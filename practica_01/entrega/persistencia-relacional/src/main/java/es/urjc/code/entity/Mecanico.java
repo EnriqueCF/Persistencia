@@ -88,6 +88,8 @@ public class Mecanico extends Empleado{
 		this.revisiones = revisiones;
 	}
 
+
+
 	/**
 	 * @param codigo
 	 * @param nombre

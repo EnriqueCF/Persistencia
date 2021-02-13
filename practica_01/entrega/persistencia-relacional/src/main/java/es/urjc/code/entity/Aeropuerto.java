@@ -23,6 +23,7 @@ public class Aeropuerto {
 	private List<Vuelo> salidas;
 	@OneToMany(mappedBy = "destino")
 	private List<Vuelo> llegadas;
+
 	@OneToMany(mappedBy = "aeropuerto")
 	private List<Revision> revisiones;
 	
