@@ -78,5 +78,13 @@ public class TripulanteVuelo {
 		super();
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "TripulanteVuelo [id=" + id + ", tripulante=" + tripulante + ", vuelo=" + vuelo + "]";
+	}
+
 	
 }

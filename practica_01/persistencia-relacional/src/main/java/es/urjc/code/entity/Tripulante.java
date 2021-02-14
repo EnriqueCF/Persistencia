@@ -38,15 +38,7 @@ public class Tripulante extends Empleado {
 	public void setCompania(String compania) {
 		this.compania = compania;
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return String.format(
-				"Tripulante [puesto=%s, compania=%s, getId()=%s, getCodigo()=%s, getNombre()=%s, getApellidos()=%s]",
-				puesto, compania, getId(), getCodigo(), getNombre(), getApellidos());
-	}
+
 	/**
 	 * @param codigo
 	 * @param nombre
@@ -82,6 +74,13 @@ public class Tripulante extends Empleado {
 	
 	public Tripulante() {
 		super();
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Tripulante [puesto=" + puesto + ", compania=" + compania + ", " + super.toString() + "]";
 	}
 	
 	

@@ -24,6 +24,7 @@ import es.urjc.code.repository.AvionRepository;
 import es.urjc.code.repository.MecanicoRepository;
 import es.urjc.code.repository.RevisionRepository;
 import es.urjc.code.repository.TripulanteRepository;
+import es.urjc.code.repository.TripulanteVueloRepository;
 import es.urjc.code.repository.VueloRepository;
 
 @Controller
@@ -43,18 +44,13 @@ public class DatabaseLoader implements CommandLineRunner {
 	private TripulanteRepository tripulanteRepository;
 	@Autowired
 	private VueloRepository vueloRepository;
+	@Autowired
+	private TripulanteVueloRepository tripulanteVueloRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
-		LOGGER.info("---  Database loadr START");
-
-		System.out.println("INICIO CARGA DE DATOS");
-
-
 		cargaDatosRepositorios();
-
 		consultasBasicas();
-
 		consultas();
 	}
 
@@ -74,7 +70,7 @@ public class DatabaseLoader implements CommandLineRunner {
 				"España");
 		Aeropuerto aeropuertoSanPablo = new Aeropuerto("SVQ", "Aeropuerto San Pablo", "Sevilla", "España");
 		Aeropuerto aeropuertoCuatroVientos = new Aeropuerto("MCV", "Cuatro Vientos", "Madrid", "España");
-		Aeropuerto aeropuertoElPrat = new Aeropuerto("BCN", "Josep Tarradellas Barcelona-El Prat", "El Prat	",
+		Aeropuerto aeropuertoElPrat = new Aeropuerto("BCN", "Josep Tarradellas Barcelona-El Prat", "El Prat",
 				"España");
 
 		aeropuertoRepository.save(aeropuertoAdolfoSuarez);
@@ -132,8 +128,6 @@ public class DatabaseLoader implements CommandLineRunner {
 		vueloRepository.save(vueloIberia);
 		vueloRepository.save(vueloAirEuropa);
 		vueloRepository.save(vueloVueling);
-
-		System.out.println("FIN CARGA DE DATOS");
 	}
 
 	private void consultasBasicas() {
@@ -142,31 +136,39 @@ public class DatabaseLoader implements CommandLineRunner {
 		List<Avion> aviones = avionRepository.findAll();
 		List<Tripulante> tripulantes = tripulanteRepository.findAll();
 		List<Revision> revisiones = revisionRepository.findAll();
-
+		List<TripulanteVuelo> tripulantesVuelo = tripulanteVueloRepository.findAll();
+		List<Vuelo> vuelos = vueloRepository.findAll();
+		
 		muestraDatos(aeropuertos);
 		muestraDatos(mecanicos);
 		muestraDatos(aviones);
 		muestraDatos(tripulantes);
 		muestraDatos(revisiones);
+		muestraDatos(tripulantesVuelo);
+		muestraDatos(vuelos);
+
 	}
 
 	private void consultas() {
 		/*
 		 * • Para cada avión, mostrar el nombre y apellidos de los mecánicos
-		 * responsables de sus revisiones. • Dado el nombre de una ciudad y una fecha,
+		 * responsables de sus revisiones. 
+		 * • Dado el nombre de una ciudad y una fecha,
 		 * listado de los vuelos que han aterrizado (destino) en los aeropuertos de esa
-		 * ciudad en esa fecha, ordenados por hora. • Dado el código de empleado de un
+		 * ciudad en esa fecha, ordenados por hora. 
+		 * • Dado el código de empleado de un
 		 * tripulante, mostrar su nombre y apellidos y las ciudades desde las que ha
-		 * despegado junto con la fecha en que despegó. • Para cada tripulante, mostrar
+		 * despegado junto con la fecha en que despegó. 
+		 * • Para cada tripulante, mostrar
 		 * su nombre y apellidos junto con su número total de vuelos y la suma de horas
 		 * de estos.
+		 * 
 		 */
 	}
 
 	private static void muestraDatos(@SuppressWarnings("rawtypes") List datos) {
 		for (Object p : datos) {
-			System.out.println(p);
+			LOGGER.info(p.toString());
 		}
-		System.out.println();
 	}
 }

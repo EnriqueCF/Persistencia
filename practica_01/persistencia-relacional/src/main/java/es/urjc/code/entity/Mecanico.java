@@ -97,17 +97,20 @@ public class Mecanico extends Empleado{
 		super(codigo, nombre, apellidos);
 	}
 
+	/**
+	 *
+	 */
+	public Mecanico() {
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "Mecanico [empresa=" + empresa + ", incorpracion=" + incorpracion + ", formacion=" + formacion + "]";
+		return "Mecanico [empresa=" + empresa + ", incorpracion=" + incorpracion + ", formacion=" + formacion + ", "
+				+ super.toString() + "]";
 	}
-
-	/**
-	 *
-	 */
-	public Mecanico() {
-	}	
+	
+	
 }

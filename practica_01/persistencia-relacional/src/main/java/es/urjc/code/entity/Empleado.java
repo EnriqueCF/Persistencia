@@ -22,7 +22,7 @@ public abstract class Empleado {
 	/**
 	 * @return the id
 	 */
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 	/**
@@ -46,7 +46,7 @@ public abstract class Empleado {
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	/**
@@ -88,7 +88,7 @@ public abstract class Empleado {
 	 */
 	@Override
 	public String toString() {
-		return "Empleado [id=" + id + ", codigo=" + codigo + ", nombre=" + nombre + ", apellidos=" + apellidos + "]";
+		return "[id=" + id + ", codigo=" + codigo + ", nombre=" + nombre + ", apellidos=" + apellidos + "]";
 	}
 	
 	
