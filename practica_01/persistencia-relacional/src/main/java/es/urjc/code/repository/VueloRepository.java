@@ -16,6 +16,11 @@ public interface VueloRepository extends JpaRepository<Vuelo, Long>{
 			+ " and function('date_format', v.salida, '%y-%m-%d') = function('date_format', ?2, '%y-%m-%d')"
 			+ " order by v.salida")
 	List<Vuelo> findAllByCiudadDestinoAndFecha(String ciudad, String date);
+	
+	
+	@Query("select v from vuelo v where v.destino.ciudad = ?1"
+			+ " and v.salida >= STR_TO_DATE(?2, '%d/%m/%Y') and v.salida <= STR_TO_DATE(?2, '%d/%m/%Y)+1")
+	List<Vuelo> vuelosCiudadFecha(String ciudad, String fecha);
 }
 
 // https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html#function_date-format

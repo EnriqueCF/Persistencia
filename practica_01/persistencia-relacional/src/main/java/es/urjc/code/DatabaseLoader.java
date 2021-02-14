@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Controller;
 
+import es.urjc.code.dto.RevisionDTO;
 import es.urjc.code.entity.Aeropuerto;
 import es.urjc.code.entity.Avion;
 import es.urjc.code.entity.Mecanico;
@@ -151,7 +152,9 @@ public class DatabaseLoader implements CommandLineRunner {
 
 	private void consultas() throws ParseException {
 		consulta1();
+		consulta1b();
 		consulta2();
+		consulta2b();
 		consulta3();
 		consulta4();
 	}
@@ -182,23 +185,42 @@ public class DatabaseLoader implements CommandLineRunner {
 			LOGGER.info("--------------------------------------------");
 		}
 	}
+	
+	/**
+	 * 
+	 * @author J. Manuel Colmenar
+	 * 
+	 */
+	private void consulta1b() {
+		List<RevisionDTO> revisiones = this.revisionRepository.findAllOrderByMecanicoAndAvion();
+		for(RevisionDTO revision : revisiones) {
+			LOGGER.info(revision.toString());
+		}
+	}
 	/**
 	 * Dado el nombre de una ciudad y una fecha, listado de los vuelos que han aterrizado (destino) 
 		 en los aeropuertos de esa ciudad en esa fecha, ordenados por hora. 
 	 * @throws ParseException 
 	 */
-	private void consulta2() throws ParseException {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-		Date fechaVuelo3 = sdf.parse("2000-01-01");
-
+	private void consulta2() {
 		LOGGER.info("--------------------------------------------");
 		LOGGER.info("Consulta 2");
 		LOGGER.info("--------------------------------------------");
+		
 		List<Vuelo> vuelos = vueloRepository.findAllByCiudadDestinoAndFecha("El Prat", "2000-01-01");
 		muestraDatos(vuelos);
-
 	}
+	
+	/**
+	 * 
+	 * @author J. Manuel Colmenar
+	 * 
+	 */
+	private void consulta2b() {
+		List<Vuelo> vuelos = vueloRepository.vuelosCiudadFecha("El prat", "2000-01-01");
+		muestraDatos(vuelos);
+	}
+	
 	/**
 	 Dado el código de empleado de un
 		 * tripulante, mostrar su nombre y apellidos y las ciudades desde las que ha
@@ -208,8 +230,9 @@ public class DatabaseLoader implements CommandLineRunner {
 		LOGGER.info("--------------------------------------------");
 		LOGGER.info("Consulta 3");
 		LOGGER.info("--------------------------------------------");
-		
-	
+		List<Tripulante> tripulantes = tripulanteRepository.findByCodigo("TRIP01");
+		muestraDatos(tripulantes);
+
 	}
 	/**
 	 Para cada tripulante, mostrar
@@ -221,5 +244,6 @@ public class DatabaseLoader implements CommandLineRunner {
 		LOGGER.info("Consulta 4");
 		LOGGER.info("--------------------------------------------");
 		
+		this.tripulanteVueloRepository.findById(id)
 	}
 }
