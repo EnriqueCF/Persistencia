@@ -83,7 +83,7 @@ public class TripulanteVuelo {
 	 */
 	@Override
 	public String toString() {
-		return "TripulanteVuelo [id=" + id + ", tripulante=" + tripulante + ", vuelo=" + vuelo + "]";
+		return "TripulanteVuelo [id=" + id + "]";
 	}
 
 	

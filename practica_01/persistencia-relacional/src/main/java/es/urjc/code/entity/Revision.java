@@ -180,9 +180,9 @@ public class Revision {
 	 */
 	@Override
 	public String toString() {
-		return "Revision [id=" + id + ", avion=" + avion + ", inicio=" + inicio + ", fin=" + fin + ", horas=" + horas
-				+ ", mecanicoEncargado=" + mecanicoEncargado + ", tipoRevision=" + tipoRevision + ", descripcion="
-				+ descripcion + ", aeropuerto=" + aeropuerto + "]";
+		return "Revision [id=" + id + ", matricula avion=" + avion.getMatricula() + ", inicio=" + inicio + ", fin=" + fin + ", horas=" + horas
+				+ ", mecanico encargado=" + mecanicoEncargado.getCodigo() + ", tipo revision=" + tipoRevision + ", descripcion="
+				+ descripcion + ", código aeropuerto=" + aeropuerto.getCodigo() + "]";
 	}
 
 	/**

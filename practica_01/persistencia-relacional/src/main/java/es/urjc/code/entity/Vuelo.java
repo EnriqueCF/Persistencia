@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Vuelo {
@@ -27,6 +29,7 @@ public class Vuelo {
 	@ManyToOne
 	private Aeropuerto destino;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date salida;
 	private Double duracion;
 
@@ -192,7 +195,7 @@ public class Vuelo {
 	 */
 	@Override
 	public String toString() {
-		return "Vuelo [id=" + id + ", codigo=" + codigo + ", compania=" + compania + ", avion=" + avion.getMatricula() + ", origen="
+		return "Vuelo [id=" + id + ", codigo=" + codigo + ", compania=" + compania + ", matricula avion=" + avion.getMatricula() + ", origen="
 				+ origen.getCodigo() + ", destino=" + destino.getCodigo() + ", salida=" + salida + ", duracion=" + duracion + "]";
 	}
 

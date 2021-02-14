@@ -149,26 +149,77 @@ public class DatabaseLoader implements CommandLineRunner {
 
 	}
 
-	private void consultas() {
-		/*
-		 * • Para cada avión, mostrar el nombre y apellidos de los mecánicos
-		 * responsables de sus revisiones. 
-		 * • Dado el nombre de una ciudad y una fecha,
-		 * listado de los vuelos que han aterrizado (destino) en los aeropuertos de esa
-		 * ciudad en esa fecha, ordenados por hora. 
-		 * • Dado el código de empleado de un
-		 * tripulante, mostrar su nombre y apellidos y las ciudades desde las que ha
-		 * despegado junto con la fecha en que despegó. 
-		 * • Para cada tripulante, mostrar
-		 * su nombre y apellidos junto con su número total de vuelos y la suma de horas
-		 * de estos.
-		 * 
-		 */
+	private void consultas() throws ParseException {
+		consulta1();
+		consulta2();
+		consulta3();
+		consulta4();
 	}
 
 	private static void muestraDatos(@SuppressWarnings("rawtypes") List datos) {
 		for (Object p : datos) {
 			LOGGER.info(p.toString());
 		}
+	}
+	
+	/**
+	 * Para cada avión, mostrar el nombre y apellidos de los mecánicos responsables de sus revisiones.
+	 * 
+	 */
+	private void consulta1() {
+		LOGGER.info("--------------------------------------------");
+		LOGGER.info("Consulta 1");
+		LOGGER.info("--------------------------------------------");
+		List<Avion> aviones = avionRepository.findAll();
+		for(Avion avion : aviones) {
+			LOGGER.info("--------------------------------------------");
+			LOGGER.info(avion.toString());
+			List<Revision> revisiones = avion.getRevisiones();
+			for(Revision revision: revisiones) {
+				Mecanico mecanico = revision.getMecanicoEncargado();
+				LOGGER.info(mecanico.toString());
+			}
+			LOGGER.info("--------------------------------------------");
+		}
+	}
+	/**
+	 * Dado el nombre de una ciudad y una fecha, listado de los vuelos que han aterrizado (destino) 
+		 en los aeropuertos de esa ciudad en esa fecha, ordenados por hora. 
+	 * @throws ParseException 
+	 */
+	private void consulta2() throws ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+		Date fechaVuelo3 = sdf.parse("2000-01-01");
+
+		LOGGER.info("--------------------------------------------");
+		LOGGER.info("Consulta 2");
+		LOGGER.info("--------------------------------------------");
+		List<Vuelo> vuelos = vueloRepository.findAllByCiudadDestinoAndFecha("El Prat", "2000-01-01");
+		muestraDatos(vuelos);
+
+	}
+	/**
+	 Dado el código de empleado de un
+		 * tripulante, mostrar su nombre y apellidos y las ciudades desde las que ha
+		 * despegado junto con la fecha en que despegó.  
+	 */
+	private void consulta3() {
+		LOGGER.info("--------------------------------------------");
+		LOGGER.info("Consulta 3");
+		LOGGER.info("--------------------------------------------");
+		
+	
+	}
+	/**
+	 Para cada tripulante, mostrar
+		 * su nombre y apellidos junto con su número total de vuelos y la suma de horas
+		 * de estos.
+	 */
+	private void consulta4() {
+		LOGGER.info("--------------------------------------------");
+		LOGGER.info("Consulta 4");
+		LOGGER.info("--------------------------------------------");
+		
 	}
 }

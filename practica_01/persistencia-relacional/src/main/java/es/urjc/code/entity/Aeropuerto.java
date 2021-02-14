@@ -146,7 +146,7 @@ public class Aeropuerto {
 	 */
 	@Override
 	public String toString() {
-		return "Aeropuerto [id=" + id + ", codigo=" + codigo + ", nombre=" + nombre + ", ciudad=" + ciudad + ", pais="
+		return "Aeropuerto [id=" + id + ", código=" + codigo + ", nombre=" + nombre + ", ciudad=" + ciudad + ", pais="
 				+ pais + "]";
 	}
 	

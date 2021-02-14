@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,7 +21,7 @@ public class Avion {
 	private String modelo;
 	private Double horas;
 	
-	@OneToMany(mappedBy = "avion", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "avion", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Revision> revisiones;
 	
 	@OneToMany(mappedBy="avion", cascade = CascadeType.ALL)

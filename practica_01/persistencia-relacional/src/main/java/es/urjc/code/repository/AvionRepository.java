@@ -8,4 +8,5 @@ import es.urjc.code.entity.Avion;
 @Repository
 public interface AvionRepository extends JpaRepository<Avion, Long>{
 
+
 }
