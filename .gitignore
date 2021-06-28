@@ -29,3 +29,5 @@ Tema1/.DS_Store
 .DS_Store
 
 Tema1/ejemplo1_springdata_jpa_embedded/target/
+
+*.iml
